@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import CardBoard from '../../Components/CardBoard'
 const CardBoardScreen = () => {
     return (
-        <View style={{flex:1}}>
+        <View style={styles.CardBoard}>
             <CardBoard />
         </View>
     )
@@ -11,4 +11,8 @@ const CardBoardScreen = () => {
 
 export default CardBoardScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    CardBoard:{
+        flex:1
+    }
+})
