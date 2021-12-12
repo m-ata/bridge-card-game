@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet,View,Image,SafeAreaView,Animated } from 'react-native'
-import CardAce from '../../assets/Ace_of_hearts.png'
+import CardAce from '../../assets/ace_of_hearts.png'
 import {cardHeight,cardPadding} from '../Constant'
 
 const AceCard = ({cardNumber}) => {
