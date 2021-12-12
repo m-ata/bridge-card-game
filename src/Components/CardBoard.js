@@ -1,9 +1,22 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native'
 import Header from '../Screens/Layout/Header'
 import AceCard from './AceCard'
 import AceCardBottom from './AceCardBottom'
+import { height } from '../Constant'
+
+
+
 const CardBoard = () => {
+    const leftValue = useState(new Animated.Value(-120))[0]
+    const movingCard = () => {
+        Animated.timing(leftValue, {
+            toValue: -30,
+            duration: 1000,
+            useNativeDriver: false
+        }).start()
+    }
+
     return (
         <View style={styles.cardContainer}>
             <Header />
@@ -12,12 +25,13 @@ const CardBoard = () => {
                 <View style={styles.playerTwo}><Text>Ayse</Text></View>
                 <View style={styles.playerThree}><Text>Fatma</Text></View>
                 <View style={styles.playerFour}><Text>Ahmet</Text></View>
-                <View style={styles.emptyCard} />
+
+                <TouchableOpacity style={styles.emptyCard} onPress={movingCard} />
             </View>
             <View>
-                <View style={styles.cardGroupOne}>
+                <Animated.View style={[styles.cardGroupOne, { left: leftValue }]}>
                     <AceCard />
-                </View>
+                </Animated.View>
                 <View style={styles.cardGroupTwo}>
                     <AceCard cardNumber={4} />
                 </View>
@@ -26,7 +40,7 @@ const CardBoard = () => {
                 </View>
             </View>
             <View>
-                <AceCardBottom cardNumber={3} />
+                <AceCardBottom cardNumber={6} />
             </View>
         </View>
     )
@@ -69,8 +83,9 @@ const styles = StyleSheet.create({
         width: '40%',
         alignItems: "center",
         position: "absolute",
-        top: 602,
-        alignSelf: "center"
+        top: height < 791 ? height * 0.84 : height * 0.82,
+        alignSelf: "center",
+        justifyContent: "flex-end"
     },
     emptyCard: {
         width: 71,
@@ -82,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         borderRadius: 1,
     },
-    cardGroupOne :{ left: -120, marginTop: 225 },
-    cardGroupTwo:{ left: -30, marginTop: 5 },
-    cardGroupThree:{ left: -60, marginTop: 5 }
+    cardGroupOne: { marginTop: 225 },
+    cardGroupTwo: { left: -30, marginTop: 5 },
+    cardGroupThree: { left: -60, marginTop: 5 }
 })
